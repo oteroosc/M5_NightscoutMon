@@ -36,13 +36,13 @@ struct tConfig {
   char userName[32];
   int timeZone = 3600; // time zone offset in hours, must be corrected for internatinal use and DST
   int dst = 0; // DST time offset in hours, must be corrected for internatinal use and DST
-  int show_mgdl = 0; 
-  float yellow_low = 4.5;
-  float yellow_high = 9;
-  float red_low = 3.9;
-  float red_high = 11;
-  float snd_warning = 3.7;
-  float snd_alarm = 3.0;
+  int show_mgdl = 1; 
+  float yellow_low = 40;
+  float yellow_high = 180;
+  float red_low = 60;
+  float red_high = 200;
+  float snd_warning = 60;
+  float snd_alarm = 40;
   uint8_t brightness1, brightness2, brightness3;
   char wlan1ssid[32];
   char wlan1pass[32];
@@ -771,7 +771,7 @@ void update_glycemia() {
           M5.Lcd.setFreeFont(FSSB12);
           M5.Lcd.setTextSize(1);
           M5.Lcd.setTextColor(TFT_WHITE, TFT_BLACK);
-          M5.Lcd.drawString("Nightscout", 0, 0, GFXFF);
+          M5.Lcd.drawString("NS", 0, 0, GFXFF);
           M5.Lcd.drawString(cfg.userName, 0, 24, GFXFF);
  
           M5.Lcd.setTextColor(TFT_LIGHTGREY, TFT_BLACK);
@@ -906,9 +906,9 @@ void update_glycemia() {
           char devStr[64];
           strcpy(devStr, sensDev);
           if(strcmp(devStr,"MIAOMIAO")==0)
-            strcpy(devStr,"Spike MiaoMiao + Libre");
+            strcpy(devStr,"...");
           if(strcmp(devStr,"Tomato")==0)
-            strcat(devStr," MiaoMiao + Libre");
+            strcat(devStr," ..");
           M5.Lcd.drawString(devStr, 0, 220, GFXFF);
 
           /*
